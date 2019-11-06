@@ -1,0 +1,89 @@
+<!Doctype: HTML w/ Processing>
+
+<html>
+
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Processing Demo</title>
+      <script type="text/javascript" src="js/processing.js"></script>
+  </head>
+  
+  <body>
+    <h1>PUT YOUR TITLE HERE</h1>
+    <p>ADD DESCRIPTION HERE</p>
+    
+    <script type="text/processing">
+    
+      //DECLARE VARIABLES
+int gameState;
+int x, y, Vx, Vy;
+
+// SETUP
+void setup(){
+  size(650,650);
+  gameState=0;
+  x=200;
+  y=200;
+  Vx = 5;
+  Vy = 3;
+}
+
+//MAIN
+void draw(){
+  background(0); // black background
+
+  
+  if(gameState==0)
+  {
+    startScreen();
+  }else{
+    //BEGIN GAME  --TODO
+    ellipse(x,y,30,30);
+  }
+  x = x + Vx;
+  y = y + Vy;
+  checkWalls();
+}
+
+
+//make the ball bounce
+void checkWalls(){
+  if (x > width || x < 0)
+  {
+    Vx = -Vx;
+  }
+  if (y > height || y < 0)
+  {
+    Vy = -Vy;
+  }
+}
+
+void startScreen(){
+  textSize(44);
+  fill(255); //white
+  text("Hello!",40,100);
+  text("'clickball'",60,200);
+  if(mouseX > 95 && mouseX < 395 && mouseY > 265 && mouseY < 310){
+    fill(0,255,0); //Green
+    if(mousePressed){
+      gameState=1;
+     
+    }
+  }
+  else{
+    fill(255,0,0);  //red
+  }
+  rect(90,250,300,55,15);
+  fill(255,155,0); //orange
+  text("click to start!",100,300);
+}
+
+       
+      
+    
+    </script>
+    <canvas id="sketch" style="border: 1px solid black;"></canvas>
+    
+  </body>
+  
+</html>
