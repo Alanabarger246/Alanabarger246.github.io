@@ -9,14 +9,16 @@
   </head>
   
   <body>
-    <h1>PUT YOUR TITLE HERE</h1>
-    <p>ADD DESCRIPTION HERE</p>
+    <h1>Ball Bounce Game</h1>
+    
     
     <script type="text/processing">
-    
-      //DECLARE VARIABLES
+    //DECLARE VARIABLES
 int gameState;
 int x, y, Vx, Vy;
+int score;
+
+
 
 // SETUP
 void setup(){
@@ -24,13 +26,16 @@ void setup(){
   gameState=0;
   x=200;
   y=200;
-  Vx = 5;
-  Vy = 3;
+  Vx = 10;
+  Vy = 6;
+  size(650, 650);
+  textSize(30);
+ 
 }
 
 //MAIN
 void draw(){
-  background(0); // black background
+  background(52, 235, 79); // green background
 
   
   if(gameState==0)
@@ -39,10 +44,13 @@ void draw(){
   }else{
     //BEGIN GAME  --TODO
     ellipse(x,y,30,30);
-  }
+  
   x = x + Vx;
   y = y + Vy;
   checkWalls();
+  text("Score: " + score, 50, 60);
+  //text("Last try: ", 220, 60);
+  }
 }
 
 
@@ -59,12 +67,13 @@ void checkWalls(){
 }
 
 void startScreen(){
+  background(0);
   textSize(44);
-  fill(255); //white
+  fill(168, 50, 50); //red
   text("Hello!",40,100);
   text("'clickball'",60,200);
   if(mouseX > 95 && mouseX < 395 && mouseY > 265 && mouseY < 310){
-    fill(0,255,0); //Green
+    fill(219, 52, 235); //purple
     if(mousePressed){
       gameState=1;
      
@@ -77,6 +86,15 @@ void startScreen(){
   fill(255,155,0); //orange
   text("click to start!",100,300);
 }
+
+void mousePressed()
+{
+  if(abs(mouseX - x)< 30 && abs(mouseY - y) < 30)  
+  { 
+     score++;
+  }
+}
+     
 
        
       
